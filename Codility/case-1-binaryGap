@@ -1,0 +1,33 @@
+class Solution {
+    public int solution(int N) {
+    int binaryGap=0;
+    int tempBinaryGap=0;
+    boolean binaryOpen=false;
+    String binaryRep = Integer.toBinaryString(N).toString();
+    for(int ctr=0; ctr < binaryRep.length(); ctr++){
+      if(binaryRep.charAt(ctr) == '1'){
+        if(((ctr+1) < binaryRep.length()) && binaryRep.charAt(ctr+1) == '0'){
+          binaryOpen = true;  
+          if(tempBinaryGap > binaryGap){
+          binaryGap = tempBinaryGap;
+          }
+          tempBinaryGap = 0;
+        }else{
+          binaryOpen = false;
+        }
+      }else{
+        tempBinaryGap++; 
+      }
+      
+      if((ctr+1) == binaryRep.length()){
+         if(binaryOpen == false){
+          if(tempBinaryGap > binaryGap){
+          binaryGap = tempBinaryGap;
+          tempBinaryGap = 0;
+          }
+        }
+      }
+    }
+    return binaryGap;
+    }
+}
