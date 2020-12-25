@@ -1,0 +1,75 @@
+class Solution {
+    public int solution(String S) {
+      if(S.length() == 0) return 1;
+      Stack stack = new Stack(S);
+      for(int i=0; i < S.length(); i++){
+        char a = S.charAt(i);
+        if(isOpen(a)){
+            if(stack.push(a)==0) return 0;
+        } else {
+            if(stack.getTop() != getOpening(a)) return 0;
+            else { if(stack.pop()==0) return 0; }
+        }
+      }
+      if(stack.getTopIndex() > -1) return 0;                   
+      return 1;
+    }
+    
+    private boolean isOpen(char sym){
+      boolean isOpen=false;a
+      switch(sym){
+        case '(':
+        case '[':
+        case '{':
+          isOpen=true; break;
+      }
+      return isOpen;
+    }
+
+    private char getOpening(char open){
+        char o = '\u0000';
+        switch(open){
+            case ')': o='('; break;
+            case ']': o='['; break;
+            case '}': o='{'; break;
+        }
+        return o;
+    }  
+
+}
+
+class Stack{
+    char[] stack;
+    char top;
+    int topIndex=-1;
+    Stack(String S){
+        stack = new char[S.length()];
+    }
+
+    char getTop(){
+        return this.top;
+    }
+
+    int getTopIndex(){
+        return this.topIndex;
+    }
+
+    int push(char c){
+        if(topIndex==stack.length) // overflow
+            return 0;
+        topIndex++;
+        stack[topIndex] = c;
+        top = c;
+        return 1;
+    }
+
+    int pop(){
+        if(topIndex == -1) // underflow
+            return 0;
+        topIndex--;
+        if(topIndex > -1){
+           top = stack[topIndex];
+        }
+        return 1;
+    }
+}

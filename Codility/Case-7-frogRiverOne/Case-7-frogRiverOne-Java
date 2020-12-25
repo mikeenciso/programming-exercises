@@ -1,0 +1,21 @@
+import java.util.Map;
+import java.util.HashMap;
+
+class Solution {
+    public int solution(int X, int[] A) {
+        int arrLength = A.length;
+        int position = -1;
+        Map<Integer,Integer> m = new HashMap<>();
+        
+        for(int ctr=0; ctr < arrLength; ctr++){
+            if(!m.containsKey(A[ctr])){
+                m.put(A[ctr], 1);
+                if(m.size() == X){
+                    position = ctr;
+                    break;
+                }
+            }
+        }
+       return (m.size() == X) ? position : -1;
+    }
+}

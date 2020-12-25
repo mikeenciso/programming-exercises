@@ -1,0 +1,27 @@
+class Solution {
+  public int[] solution(int N, int[] A) {
+    int mc = 0;
+    int ms = 0;
+    int st = 0;
+    int[] B = new int[N];
+    
+    for(int e : A){
+      if(e <= N){
+        if(++B[e-1] > st)
+          st = B[e-1];
+      }
+      else{
+         B = new int[N];
+         ms++;
+         mc+=st;
+         st=0;
+      }         
+    }
+    
+    if(ms > 0)
+      for(int x=0; x < N; x++)
+        B[x] += mc;
+
+    return B;
+  }
+}

@@ -1,0 +1,32 @@
+Private Function solution(S As String) As Integer
+    Dim i As Integer = S.Length()
+    If i=0 Then  
+        return 1
+    End If
+    Dim stack(i) As Char
+    Dim h As Integer = -1
+    Dim x As Integer = 0
+    For x = 0 To i-1
+        If S(x)="(" Then
+            h+=1
+            stack(h) = S(x)
+        Else
+            If h=-1 Then
+                return 0
+            Else
+                If stack(h) <> "(" Then
+                    return 0
+                Else 
+                    h-=1
+                End If
+            End If
+        End If
+    Next
+    
+    If h=-1 Then 
+        return 1
+    Else
+        return 0
+    End If
+    
+End Function

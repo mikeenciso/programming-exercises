@@ -1,0 +1,51 @@
+var stack=[];
+var topElem='a';
+var topIndex=-1;
+
+function solution(S){
+   var splitS = S.split('');
+   if(splitS.length==0){return 1;}
+   for(var i=0; i < splitS.length; i++){
+       if(isOpen(splitS[i])){
+           if(stackPush(splitS[i])==0){ return 0; }
+       }else{
+           if(topElem != getOpening(splitS[i])){ return 0; }
+            else{ if(pop()==0){ return 0;}}
+       }
+   }
+   if(topIndex > -1){ return 0; }
+   return 1;
+}
+
+function isOpen(sym){
+   switch(sym){
+      case '(': return true;break;
+      case '[': return true;break;
+      case '{': return true;break;
+      default: return false;
+   }
+}
+
+function getOpening(open){
+  switch(open){
+      case ')': return '(';break;
+      case ']': return '[';break;
+      case '}': return '{';break;
+      default: return '';
+   }
+}
+
+function stackPush(c) {
+  if(topIndex==stack.length){ return 0; }
+    topIndex++;
+    stack.push(c);
+    topElem = c;
+    return 1;
+}
+
+function pop(){
+   if(topIndex==-1){ return 0; }
+   topIndex--;
+   if(topIndex > -1){ topElem = stack[topIndex]; }
+   return 1;
+}

@@ -1,0 +1,62 @@
+class Stack:
+    topIndex=-1
+    top='\0'
+    def __init__(self,stackStr):
+        self.stackSize = len(stackStr)
+        self.stack = list(stackStr)
+    def getTop(self):
+        return self.top
+    def getTopIndex(self):
+        return self.topIndex  
+    def push(self,elem):
+        if self.topIndex == self.stackSize:
+            return 0
+        self.topIndex += 1
+        self.stack[self.topIndex] = elem
+        self.top = elem
+        return 1
+    def pop(self):
+        if self.topIndex == -1:
+            return 0
+        self.topIndex -= 1
+        if self.topIndex > -1:
+            self.top = self.stack[self.topIndex]
+        return 1
+
+def solution(S):
+    if len(S) == 0:
+        return 1
+    stack = Stack(S)
+    for a in S:
+        if isOpen(a):
+            if stack.push(a) == 0:
+                return 0
+        else:
+             if stack.getTop() != getOpening(a):
+                 return 0
+             else:
+                 if stack.pop() == 0:
+                     return 0
+    if stack.getTopIndex() > -1:
+        return 0        
+
+    return 1
+
+def isOpen(sym):
+    switcher={
+        '(': True,
+        '[': True,
+        '{': True
+    } 
+    return switcher.get(sym,False)
+
+def getOpening(open):
+    switcher={
+        ')': '(',
+        ']': '[',
+        '}': '{'
+    }
+    return switcher.get(open,'\0')
+
+
+print(solution("[{[()()]}](){}]"))

@@ -1,0 +1,18 @@
+import java.util.Map;
+import java.util.HashMap;
+
+class Solution {
+    public int solution(int[] A) {
+        int arrLen = A.length;
+        Map<Integer,Integer> m = new HashMap<>();
+        
+        for(int ctr=arrLen; ctr > 0; ctr--)
+            m.put(ctr,1);
+        
+        for(int a : A)
+            if(m.containsKey(a))
+                m.remove(a);
+
+        return (m.size() == 0) ? 1 : 0;
+    }
+}

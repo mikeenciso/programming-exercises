@@ -1,0 +1,13 @@
+import java.util.Arrays;
+class Solution {
+    public int solution(int[] A){
+        int num=1;
+        if(A.length == 0)
+            return 0;
+        Arrays.sort(A);
+        for(int x=1; x < A.length; x++)
+            if(A[x] != A[x-1])
+                num++;
+        return num;
+    }
+}

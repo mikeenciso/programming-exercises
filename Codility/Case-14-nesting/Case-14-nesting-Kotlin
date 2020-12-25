@@ -1,0 +1,37 @@
+var topIndex : Int = -1;
+var stack : CharArray = charArrayOf() ;
+var top : Char = '\u0000';
+fun solution(S: String): Int{
+    if(S.length==0)
+        return 1;
+    stack = S.toCharArray();
+    for(a in S){
+        if(a=='('){
+          if(push(a) == 0){ 
+              return 0; }  
+        }else{
+          if(top != '('){
+              return 0; }
+          else{ 
+            if(pop()==0){ return 0; }
+          }
+        }
+    }
+    if(topIndex > -1){ return 0; }
+    return 1;
+}
+fun push(elem: Char): Int{
+    if(topIndex == stack.size)
+      return 0;
+    topIndex++;
+    stack[topIndex] = elem;
+    top = elem
+    return 1;
+}
+fun pop(): Int{
+    if(topIndex == -1)
+      return 0;
+    topIndex--;
+    if(topIndex > -1)
+      top = stack[topIndex];
+    return 1;

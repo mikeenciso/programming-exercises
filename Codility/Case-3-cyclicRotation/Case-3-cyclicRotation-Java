@@ -1,0 +1,16 @@
+class Solution {
+    public int[] solution(int[] A, int K) {
+        int arrLength = A.length;
+        if(arrLength == 0 || K == 0)
+            return A;
+    
+        int shift = K % arrLength;   
+        int[] B = A.clone();
+    
+        if(shift != 0)
+            for(int x=0; x < arrLength; x++)
+                B[(x + shift) % arrLength] = A[x];
+           
+        return B;       
+    }
+}

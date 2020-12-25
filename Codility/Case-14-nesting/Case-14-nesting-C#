@@ -1,0 +1,24 @@
+using System;
+
+class Solution {
+    public int solution(string S) {
+        int i = S.Length;
+        if(i==0){ return 1; }
+        char[] stack = new char[i];
+        int h = -1;
+        for(int x=0; x < i; x++){
+            if(S[x]=='('){
+                h++;
+                stack[h] = S[x];
+            }else{
+                if(h==-1){ return 0; }
+                else{
+                    if(stack[h]!='('){ return 0;}
+                    else{ h--;}    
+                }
+            }
+        }
+        if(h==-1){ return 1; }
+        else{ return 0; }
+    }
+}
