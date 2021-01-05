@@ -10,7 +10,7 @@ Also, the files do not contain the expected file extension based on the language
 
 For your reference, below is the list of contents and corresponding links to the Codility site and Black Ops Code site:
 
-###Case-1-binaryGap
+### Case-1-binaryGap
 	- Case-1-binaryGap-Java
 		- Codility URL: https://app.codility.com/programmers/lessons/1-iterations/binary_gap/
 		- Black Ops Code URL: https://blackopscode.com/codility-case-1-binary-gap-java-solution/
